@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Compact Civils | Professional Asphalt &amp; Civil Solutions</title>
+<meta name="description" content="Compact Civils delivers professional asphalt surfacing, paving and civil construction solutions for commercial, industrial and large-scale infrastructure projects." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: '#081D2B',
+          navy2: '#0B2636',
+          orange: '#F47A20',
+          bg: '#F5F5F2',
+          charcoal: '#1D2730',
+          muted: '#6E7780',
+        },
+        fontFamily: {
+          display: ['"Plus Jakarta Sans"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: #1D2730; background: #FFFFFF; }
+  h1,h2,h3,h4,.font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .fade-up.in-view { opacity: 1; transform: translateY(0); }
+
+  .btn-orange {
+    background: #F47A20; color: #fff; font-weight: 600;
+    padding: .85rem 1.75rem; border-radius: .5rem; display: inline-flex; align-items: center; gap: .5rem;
+    transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+    box-shadow: 0 8px 20px -8px rgba(244,122,32,.55);
+  }
+  .btn-orange:hover { background: #db6912; transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,.35); color: #fff; font-weight: 600;
+    padding: .85rem 1.75rem; border-radius: .5rem; display: inline-flex; align-items: center; gap: .5rem;
+    transition: border-color .25s ease, background .25s ease;
+  }
+  .btn-outline:hover { border-color: #F47A20; background: rgba(244,122,32,.08); }
+
+  .service-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -20px rgba(8,29,43,.25); border-color: #F47A20; }
+
+  .industry-card img { transition: transform .6s ease; }
+  .industry-card:hover img { transform: scale(1.08); }
+
+  .stat-divider::before {
+    content: ''; position: absolute; left: 0; top: 10%; bottom: 10%; width: 1px; background: rgba(255,255,255,.15);
+  }
+
+  .quote-modal { transition: opacity .25s ease; }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #F5F5F2; }
+  ::-webkit-scrollbar-thumb { background: #0B2636; border-radius: 6px; }
+
+  .step-line { background: repeating-linear-gradient(90deg, #F47A20 0 10px, transparent 10px 20px); height: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { transition: none; opacity: 1; transform: none; }
+    .industry-card img { transition: none; }
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- ============ HEADER ============ -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <rect width="34" height="34" rx="8" fill="#F47A20"/>
+        <path d="M7 23L14 10L17 16L20 11L27 23" stroke="#081D2B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="font-display font-extrabold text-lg text-white tracking-tight">Compact <span class="text-orange">Civils</span></span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-9 text-sm font-medium text-white/80">
+      <a href="index.html" class="hover:text-orange transition-colors">Home</a>
+      <a href="about.html" class="hover:text-orange transition-colors">About Us</a>
+      <a href="services.html" class="hover:text-orange transition-colors">Services</a>
+      <a href="projects.html" class="hover:text-orange transition-colors">Projects</a>
+      <a href="index.html#industries" class="hover:text-orange transition-colors">Industries</a>
+      <a href="contact.html" class="hover:text-orange transition-colors">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <button onclick="openQuote()" class="hidden md:inline-flex btn-orange !py-2.5 !px-5 text-sm">Request a Quote</button>
+      <button id="menu-toggle" class="lg:hidden text-white" aria-label="Open menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- mobile menu -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-navy2 border-t border-white/10 px-6 py-6 space-y-4">
+    <a href="index.html" class="block text-white/85 font-medium">Home</a>
+    <a href="about.html" class="block text-white/85 font-medium">About Us</a>
+    <a href="services.html" class="block text-white/85 font-medium">Services</a>
+    <a href="projects.html" class="block text-white/85 font-medium">Projects</a>
+    <a href="index.html#industries" class="block text-white/85 font-medium">Industries</a>
+    <a href="contact.html" class="block text-white/85 font-medium">Contact</a>
+    <button onclick="openQuote()" class="btn-orange w-full justify-center !py-2.5">Request a Quote</button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative pt-20">
+  <div class="relative min-h-[92vh] flex items-center">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1757030689760-3ec8be7326ae?q=80&w=2400&auto=format&fit=crop" alt="Fresh asphalt paving on a commercial road" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-transparent"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-10 w-full py-24">
+      <div class="max-w-2xl fade-up">
+        <p class="text-orange font-semibold tracking-widest text-sm mb-5 uppercase">Asphalt &amp; Civil Construction</p>
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.08] mb-6">
+          Professional <span class="text-orange">Asphalt</span> &amp; Civil Solutions
+        </h1>
+        <p class="font-display text-xl sm:text-2xl font-semibold text-white/90 mb-6">
+          Built for <span class="text-orange">Commercial &amp; Industrial</span> Projects
+        </p>
+        <p class="text-white/70 text-base sm:text-lg leading-relaxed mb-10 max-w-xl">
+          Compact Civils delivers professional asphalt surfacing, paving and civil construction solutions for commercial, industrial and large-scale infrastructure projects.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <button onclick="openQuote()" class="btn-orange">Get a Quote
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <a href="projects.html" class="btn-outline">View Our Projects
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STATS BAR ===== -->
+  <div class="relative max-w-6xl mx-auto px-6 -mt-16 z-10 fade-up">
+    <div class="bg-navy2 rounded-2xl shadow-2xl grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 divide-white/10">
+      <div class="relative p-8 text-center stat-divider">
+        <p class="font-display text-3xl sm:text-4xl font-extrabold text-orange mb-1">10+</p>
+        <p class="text-white/70 text-sm">Years of Experience</p>
+      </div>
+      <div class="relative p-8 text-center stat-divider">
+        <p class="font-display text-3xl sm:text-4xl font-extrabold text-orange mb-1">500+</p>
+        <p class="text-white/70 text-sm">Projects Completed</p>
+      </div>
+      <div class="relative p-8 text-center stat-divider">
+        <p class="font-display text-2xl sm:text-3xl font-extrabold text-orange mb-1">Commercial</p>
+        <p class="text-white/70 text-sm">&amp; Industrial Focus</p>
+      </div>
+      <div class="relative p-8 text-center">
+        <p class="font-display text-3xl sm:text-4xl font-extrabold text-orange mb-1">100%</p>
+        <p class="text-white/70 text-sm">Quality Commitment</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="bg-bg py-28 mt-8">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="max-w-2xl mx-auto text-center mb-16 fade-up">
+      <p class="text-orange font-semibold tracking-widest text-sm uppercase mb-3">Our Services</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-charcoal mb-4">Complete Asphalt &amp; Civil Solutions</h2>
+      <p class="text-muted leading-relaxed">From new installations to full resurfacing, we deliver durable, professionally engineered surfaces for commercial and industrial sites of every scale.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- card template x6 -->
+      <div class="service-card fade-up bg-white border border-black/5 rounded-2xl p-8">
+        <div class="w-12 h-12 rounded-lg bg-orange/10 flex items-center justify-center mb-6">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F47A20" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg mb-2">Asphalt Surfacing</h3>
+        <p class="text-muted text-sm leading-relaxed">Professional asphalt installation for roads, parking areas and industrial facilities.</p>
+      </div>
+      <div class="service-card fade-up bg-white border border-black/5 rounded-2xl p-8">
+        <div class="w-12 h-12 rounded-lg bg-orange/10 flex items-center justify-center mb-6">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F47A20" stroke-width="2"><path d="M4 20l4-10 4 6 3-8 5 12"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg mb-2">Asphalt Resurfacing</h3>
+        <p class="text-muted text-sm leading-relaxed">Restoring worn and damaged asphalt surfaces to a durable, like-new finish.</p>
+      </div>
+      <div class="service-card fade-up bg-white border border-black/5 rounded-2xl p-8">
+        <div class="w-12 h-12 rounded-lg bg-orange/10 flex items-center justify-center mb-6">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F47A20" stroke-width="2"><rect x="3" y="7" width="18" height="12" rx="1"/><path d="M8 7V4h8v3"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg mb-2">Commercial Asphalt</h3>
+        <p class="text-muted text-sm leading-relaxed">Durable surfacing solutions built for business properties and public-facing sites.</p>
+      </div>
+      <div class="service-card fade-up bg-white border border-black/5 rounded-2xl p-8">
+        <div class="w-12 h-12 rounded-lg bg-orange/10 flex items-center justify-center mb-6">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F47A20" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg mb-2">Industrial Asphalt</h3>
+        <p class="text-muted text-sm leading-relaxed">Heavy-duty asphalt solutions engineered for demanding industrial environments.</p>
+      </div>
+      <div class="service-card fade-up bg-white border border-black/5 rounded-2xl p-8">
+        <div class="w-12 h-12 rounded-lg bg-orange/10 flex items-center justify-center mb-6">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F47A20" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg mb-2">Paving</h3>
+        <p class="text-muted text-sm leading-relaxed">Professional paving solutions for commercial and residential spaces alike.</p>
+      </div>
+      <div class="service-card fade-up bg-white border border-black/5 rounded-2xl p-8">
+        <div class="w-12 h-12 rounded-lg bg-orange/10 flex items-center justify-center mb-6">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F47A20" stroke-width="2"><path d="M4 19h16M6 19V9l6-5 6 5v10"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg mb-2">Road Construction</h3>
+        <p class="text-muted text-sm leading-relaxed">Construction and maintenance of durable roads and reliable access routes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED IMAGE BANNER ============ -->
+<section class="relative py-32">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1782442002533-1aec0cf5a9d8?q=80&w=2400&auto=format&fit=crop" alt="Road roller compacting fresh asphalt" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-navy/85"></div>
+  </div>
+  <div class="relative max-w-4xl mx-auto px-6 text-center fade-up">
+    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mb-5">Built for Heavy-Duty Performance</h2>
+    <p class="text-white/75 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">From commercial developments to industrial facilities, Compact Civils delivers durable surfaces designed to perform under demanding conditions.</p>
+    <a href="services.html" class="btn-orange">Explore Our Services</a>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section id="about" class="py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
+    <div class="fade-up">
+      <p class="text-orange font-semibold tracking-widest text-sm uppercase mb-3">Why Choose Us</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-charcoal mb-8">Your Trusted Asphalt &amp; Civils Partner</h2>
+
+      <div class="space-y-7">
+        <div class="flex gap-5">
+          <div class="w-11 h-11 shrink-0 rounded-lg bg-orange/10 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base mb-1">Quality Workmanship</h3>
+            <p class="text-muted text-sm leading-relaxed">We focus on high-quality materials and professional workmanship on every project.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <div class="w-11 h-11 shrink-0 rounded-lg bg-orange/10 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base mb-1">Commercial Experience</h3>
+            <p class="text-muted text-sm leading-relaxed">Experienced in handling demanding commercial and industrial projects at scale.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <div class="w-11 h-11 shrink-0 rounded-lg bg-orange/10 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base mb-1">Reliable Delivery</h3>
+            <p class="text-muted text-sm leading-relaxed">Projects are planned and completed with efficiency and professionalism.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <div class="w-11 h-11 shrink-0 rounded-lg bg-orange/10 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base mb-1">Professional Team</h3>
+            <p class="text-muted text-sm leading-relaxed">Our skilled team is committed to delivering dependable, durable results.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative fade-up">
+      <img src="https://images.unsplash.com/photo-1757030689760-3ec8be7326ae?q=80&w=1600&auto=format&fit=crop" alt="Asphalt paving crew at work on a commercial site" class="w-full h-[480px] object-cover rounded-2xl shadow-xl" />
+      <div class="absolute -bottom-8 -left-8 bg-navy2 rounded-2xl shadow-xl px-7 py-6 flex items-center gap-4">
+        <p class="font-display text-3xl font-extrabold text-orange">10+</p>
+        <p class="text-white/80 text-sm leading-tight">Years of<br/>Experience</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section id="industries" class="py-28 bg-bg">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="text-center max-w-2xl mx-auto mb-14 fade-up">
+      <p class="text-orange font-semibold tracking-widest text-sm uppercase mb-3">Industries We Serve</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-charcoal">Solutions for Every Industry</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+      <div class="industry-card fade-up relative rounded-2xl overflow-hidden h-64 group">
+        <img src="https://images.unsplash.com/photo-1593280405106-e438ebe93f5b?q=80&w=900&auto=format&fit=crop" class="w-full h-full object-cover" alt="Commercial office park"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent"></div>
+        <p class="absolute bottom-5 left-5 text-white font-display font-bold text-lg">Commercial</p>
+      </div>
+      <div class="industry-card fade-up relative rounded-2xl overflow-hidden h-64 group">
+        <img src="https://images.unsplash.com/photo-1782442002533-1aec0cf5a9d8?q=80&w=900&auto=format&fit=crop" class="w-full h-full object-cover" alt="Industrial warehouse facility"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent"></div>
+        <p class="absolute bottom-5 left-5 text-white font-display font-bold text-lg">Industrial</p>
+      </div>
+      <div class="industry-card fade-up relative rounded-2xl overflow-hidden h-64 group">
+        <img src="https://images.unsplash.com/photo-1697761221129-fdf528507890?q=80&w=900&auto=format&fit=crop" class="w-full h-full object-cover" alt="Property development site"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent"></div>
+        <p class="absolute bottom-5 left-5 text-white font-display font-bold text-lg leading-tight">Property<br/>Developments</p>
+      </div>
+      <div class="industry-card fade-up relative rounded-2xl overflow-hidden h-64 group">
+        <img src="https://images.unsplash.com/photo-1595734939818-f4e0d44957df?q=80&w=900&auto=format&fit=crop" class="w-full h-full object-cover" alt="Public road infrastructure"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent"></div>
+        <p class="absolute bottom-5 left-5 text-white font-display font-bold text-lg">Municipal</p>
+      </div>
+      <div class="industry-card fade-up relative rounded-2xl overflow-hidden h-64 group">
+        <img src="https://images.unsplash.com/photo-1660508597900-f19ae2dc6b65?q=80&w=900&auto=format&fit=crop" class="w-full h-full object-cover" alt="Logistics truck yard"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent"></div>
+        <p class="absolute bottom-5 left-5 text-white font-display font-bold text-lg">Logistics</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="text-center max-w-2xl mx-auto mb-14 fade-up">
+      <p class="text-orange font-semibold tracking-widest text-sm uppercase mb-3">Our Projects</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-charcoal">Quality You Can See</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="fade-up group rounded-2xl overflow-hidden border border-black/5">
+        <div class="h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1782442002533-1aec0cf5a9d8?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Industrial yard asphalt project"/>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-lg mb-1">Northgate Logistics Yard</h3>
+          <p class="text-muted text-sm mb-4">Industrial &middot; Truck Yard Resurfacing</p>
+          <a href="projects.html" class="text-orange font-semibold text-sm inline-flex items-center gap-1">View Project <span>&rarr;</span></a>
+        </div>
+      </div>
+      <div class="fade-up group rounded-2xl overflow-hidden border border-black/5">
+        <div class="h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1593280405106-e438ebe93f5b?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Commercial parking lot paving"/>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-lg mb-1">Riverside Retail Park</h3>
+          <p class="text-muted text-sm mb-4">Commercial &middot; Parking Area Paving</p>
+          <a href="projects.html" class="text-orange font-semibold text-sm inline-flex items-center gap-1">View Project <span>&rarr;</span></a>
+        </div>
+      </div>
+      <div class="fade-up group rounded-2xl overflow-hidden border border-black/5">
+        <div class="h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1595734939818-f4e0d44957df?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Road construction project"/>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-lg mb-1">Eastfield Access Road</h3>
+          <p class="text-muted text-sm mb-4">Civil Works &middot; Road Construction</p>
+          <a href="projects.html" class="text-orange font-semibold text-sm inline-flex items-center gap-1">View Project <span>&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="py-28 bg-bg">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-charcoal mb-4">Simple Process. Professional Results.</h2>
+      <p class="text-muted">From first enquiry to finished surface, every step is planned and executed with precision.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 relative">
+      <div class="fade-up relative">
+        <p class="font-display text-orange font-extrabold text-3xl mb-3">01</p>
+        <h3 class="font-display font-bold text-base mb-2">Request a Quote</h3>
+        <p class="text-muted text-sm leading-relaxed">Tell us about your project requirements.</p>
+      </div>
+      <div class="fade-up relative">
+        <p class="font-display text-orange font-extrabold text-3xl mb-3">02</p>
+        <h3 class="font-display font-bold text-base mb-2">Site Assessment</h3>
+        <p class="text-muted text-sm leading-relaxed">Our team assesses the project and requirements.</p>
+      </div>
+      <div class="fade-up relative">
+        <p class="font-display text-orange font-extrabold text-3xl mb-3">03</p>
+        <h3 class="font-display font-bold text-base mb-2">Project Execution</h3>
+        <p class="text-muted text-sm leading-relaxed">We professionally complete the required work.</p>
+      </div>
+      <div class="fade-up relative">
+        <p class="font-display text-orange font-extrabold text-3xl mb-3">04</p>
+        <h3 class="font-display font-bold text-base mb-2">Quality Delivery</h3>
+        <p class="text-muted text-sm leading-relaxed">We deliver a durable, professionally finished project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="py-28 bg-navy relative overflow-hidden">
+  <div class="max-w-4xl mx-auto px-6 text-center fade-up">
+    <p class="text-orange font-semibold tracking-widest text-sm uppercase mb-3">Client Testimonials</p>
+    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mb-10">What Our Clients Say About Us</h2>
+
+    <svg class="mx-auto mb-6 opacity-40" width="46" height="36" viewBox="0 0 46 36" fill="none"><path d="M18.5 0C8.28 3.6 0 12.6 0 22.5c0 7.5 5.4 13.5 12.15 13.5S24.3 30 24.3 22.5c0-6.3-4.5-11.7-10.35-12.6C15.75 5.4 20.7 1.8 24.3 0h-5.8Zm21.6 0c-10.22 3.6-18.5 12.6-18.5 22.5 0 7.5 5.4 13.5 12.15 13.5S45.9 30 45.9 22.5c0-6.3-4.5-11.7-10.35-12.6C37.35 5.4 42.3 1.8 45.9 0h-5.8Z" fill="#F47A20"/></svg>
+
+    <div id="testimonial-track" class="relative min-h-[150px]">
+      <div class="testimonial-slide">
+        <p class="text-white/80 text-lg leading-relaxed mb-6">"Compact Civils resurfaced our entire distribution yard without disrupting daily operations. The finish is flawless and has held up perfectly under constant truck traffic."</p>
+        <p class="text-white font-display font-bold">Marcus Reid</p>
+        <p class="text-orange text-sm">Operations Director, Northgate Logistics</p>
+      </div>
+      <div class="testimonial-slide hidden">
+        <p class="text-white/80 text-lg leading-relaxed mb-6">"Professional from the first site visit to final sign-off. Our retail park parking areas look and perform better than we expected."</p>
+        <p class="text-white font-display font-bold">Sarah Nkosi</p>
+        <p class="text-orange text-sm">Property Manager, Riverside Retail Park</p>
+      </div>
+      <div class="testimonial-slide hidden">
+        <p class="text-white/80 text-lg leading-relaxed mb-6">"Reliable, on schedule, and the quality of workmanship speaks for itself. We now use Compact Civils for every civil works project we run."</p>
+        <p class="text-white font-display font-bold">David Botha</p>
+        <p class="text-orange text-sm">Site Manager, Eastfield Developments</p>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-4 mt-8">
+      <button onclick="changeTestimonial(-1)" class="w-10 h-10 rounded-full border border-white/20 text-white flex items-center justify-center hover:border-orange hover:text-orange transition-colors" aria-label="Previous testimonial">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <button onclick="changeTestimonial(1)" class="w-10 h-10 rounded-full border border-white/20 text-white flex items-center justify-center hover:border-orange hover:text-orange transition-colors" aria-label="Next testimonial">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSIGHTS ============ -->
+<section class="py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="text-center max-w-2xl mx-auto mb-14 fade-up">
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-charcoal">Insights &amp; Updates</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="fade-up group rounded-2xl overflow-hidden border border-black/5">
+        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1757030689760-3ec8be7326ae?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Quality asphalt installation"/></div>
+        <div class="p-6">
+          <p class="text-muted text-xs mb-2">March 12, 2026</p>
+          <h3 class="font-display font-bold text-base mb-2 leading-snug">The Importance of Quality Asphalt Installation</h3>
+          <p class="text-muted text-sm mb-4 leading-relaxed">Why correct base preparation and compaction make the difference between a surface that lasts and one that fails early.</p>
+          <a href="#" class="text-orange font-semibold text-sm">Read More &rarr;</a>
+        </div>
+      </article>
+      <article class="fade-up group rounded-2xl overflow-hidden border border-black/5">
+        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1630165356623-266076eaceb6?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Commercial asphalt maintenance"/></div>
+        <div class="p-6">
+          <p class="text-muted text-xs mb-2">February 24, 2026</p>
+          <h3 class="font-display font-bold text-base mb-2 leading-snug">How to Maintain Commercial Asphalt Surfaces</h3>
+          <p class="text-muted text-sm mb-4 leading-relaxed">Simple maintenance steps that extend the life of your parking areas and access roads.</p>
+          <a href="#" class="text-orange font-semibold text-sm">Read More &rarr;</a>
+        </div>
+      </article>
+      <article class="fade-up group rounded-2xl overflow-hidden border border-black/5">
+        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1782442002533-1aec0cf5a9d8?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Industrial surface selection"/></div>
+        <div class="p-6">
+          <p class="text-muted text-xs mb-2">January 30, 2026</p>
+          <h3 class="font-display font-bold text-base mb-2 leading-snug">Choosing the Right Surface for Industrial Areas</h3>
+          <p class="text-muted text-sm mb-4 leading-relaxed">A practical guide to matching surface specification to load, traffic and environment.</p>
+          <a href="#" class="text-orange font-semibold text-sm">Read More &rarr;</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="relative py-32">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1782442002533-1aec0cf5a9d8?q=80&w=2400&auto=format&fit=crop" alt="Construction site at dusk" class="w-full h-full object-cover"/>
+    <div class="absolute inset-0 bg-navy/88"></div>
+  </div>
+  <div class="relative max-w-3xl mx-auto px-6 text-center fade-up">
+    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mb-5">Ready to <span class="text-orange">Start</span> Your Next Project?</h2>
+    <p class="text-white/70 text-lg mb-10">Partner with Compact Civils for professional asphalt, paving and civil construction solutions.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <button onclick="openQuote()" class="btn-orange">Request a Quote</button>
+      <a href="tel:+27000000000" class="btn-outline">Call Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUSTED PARTNERS ============ -->
+<section class="py-20 bg-bg">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 text-center fade-up">
+    <p class="text-muted font-semibold tracking-widest text-sm uppercase mb-10">Trusted by Businesses &amp; Industry</p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center opacity-70">
+      <div class="h-10 flex items-center justify-center font-display font-bold text-charcoal/50">LOGISTICORP</div>
+      <div class="h-10 flex items-center justify-center font-display font-bold text-charcoal/50">RIVERSIDE</div>
+      <div class="h-10 flex items-center justify-center font-display font-bold text-charcoal/50">NORTHGATE</div>
+      <div class="h-10 flex items-center justify-center font-display font-bold text-charcoal/50">EASTFIELD</div>
+      <div class="h-10 flex items-center justify-center font-display font-bold text-charcoal/50">METRO WORKS</div>
+      <div class="h-10 flex items-center justify-center font-display font-bold text-charcoal/50">UNITEDBUILD</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact" class="bg-navy pt-20 pb-8">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-14 border-b border-white/10">
+    <div>
+      <div class="flex items-center gap-3 mb-5">
+        <svg width="30" height="30" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="8" fill="#F47A20"/><path d="M7 23L14 10L17 16L20 11L27 23" stroke="#081D2B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="font-display font-extrabold text-white">Compact <span class="text-orange">Civils</span></span>
+      </div>
+      <p class="text-white/60 text-sm leading-relaxed mb-6">Compact Civils provides professional asphalt, paving and civil construction solutions for commercial and industrial projects.</p>
+      <div class="flex gap-3">
+        <a href="#" class="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-orange hover:border-orange transition-colors" aria-label="Facebook">f</a>
+        <a href="#" class="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-orange hover:border-orange transition-colors" aria-label="LinkedIn">in</a>
+        <a href="#" class="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-orange hover:border-orange transition-colors" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="font-display font-bold text-white mb-5">Quick Links</h4>
+      <ul class="space-y-3 text-sm text-white/60">
+        <li><a href="index.html" class="hover:text-orange transition-colors">Home</a></li>
+        <li><a href="about.html" class="hover:text-orange transition-colors">About Us</a></li>
+        <li><a href="services.html" class="hover:text-orange transition-colors">Services</a></li>
+        <li><a href="projects.html" class="hover:text-orange transition-colors">Projects</a></li>
+        <li><a href="contact.html" class="hover:text-orange transition-colors">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-display font-bold text-white mb-5">Services</h4>
+      <ul class="space-y-3 text-sm text-white/60">
+        <li>Asphalt Surfacing</li>
+        <li>Asphalt Resurfacing</li>
+        <li>Commercial Asphalt</li>
+        <li>Industrial Asphalt</li>
+        <li>Paving</li>
+        <li>Civil Works</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-display font-bold text-white mb-5">Contact Us</h4>
+      <ul class="space-y-3 text-sm text-white/60 mb-6">
+        <li>+27 00 000 0000</li>
+        <li>info@compactcivils.co.za</li>
+        <li>123 Industrial Road, Johannesburg</li>
+        <li>Mon &ndash; Fri: 07:00 &ndash; 17:00</li>
+      </ul>
+      <button onclick="openQuote()" class="btn-orange !py-2.5 !px-5 text-sm">Request a Quote</button>
+    </div>
+  </div>
+
+  <p class="text-center text-white/40 text-xs pt-8">&copy; 2026 Compact Civils. All Rights Reserved.</p>
+</footer>
+
+<!-- ============ WHATSAPP FLOAT ============ -->
+<a href="https://wa.me/27000000000" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-2xl hover:scale-105 transition-transform" aria-label="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2.01 6.476 2.01 11.994c0 2.115.652 4.078 1.766 5.7L2.05 22l4.42-1.685a9.958 9.958 0 0 0 5.534 1.667c5.518 0 9.994-4.476 9.994-9.994C22.998 6.476 18.522 2 12.004 2zm0 18.13a8.11 8.11 0 0 1-4.132-1.129l-.296-.176-2.98 1.137.995-3.048-.192-.31a8.11 8.11 0 0 1-1.25-4.31c0-4.49 3.653-8.143 8.145-8.143 4.49 0 8.144 3.652 8.144 8.144 0 4.49-3.653 8.143-8.145 8.143z"/></svg>
+</a>
+
+<!-- ============ QUOTE MODAL ============ -->
+<div id="quote-modal" class="quote-modal fixed inset-0 z-50 hidden opacity-0">
+  <div class="absolute inset-0 bg-navy/70 backdrop-blur-sm" onclick="closeQuote()"></div>
+  <div class="relative max-w-xl mx-auto mt-10 mb-10 bg-white rounded-2xl shadow-2xl max-h-[85vh] overflow-y-auto">
+    <div class="sticky top-0 bg-white flex items-center justify-between px-7 py-5 border-b border-black/5">
+      <h3 class="font-display font-bold text-lg">Request a Quote</h3>
+      <button onclick="closeQuote()" class="text-muted hover:text-charcoal" aria-label="Close">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form id="quote-form" class="px-7 py-6 space-y-4" onsubmit="submitQuote(event)">
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm font-medium text-charcoal block mb-1.5">Full Name</label>
+          <input name="full_name" required type="text" class="w-full border border-black/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange/40 focus:border-orange" placeholder="Jane Dlamini"/>
+        </div>
+        <div>
+          <label class="text-sm font-medium text-charcoal block mb-1.5">Company Name</label>
+          <input name="company_name" type="text" class="w-full border border-black/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange/40 focus:border-orange" placeholder="Company (optional)"/>
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm font-medium text-charcoal block mb-1.5">Phone Number</label>
+          <input name="phone" required type="tel" class="w-full border border-black/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange/40 focus:border-orange" placeholder="082 000 0000"/>
+        </div>
+        <div>
+          <label class="text-sm font-medium text-charcoal block mb-1.5">Email Address</label>
+          <input name="email" required type="email" class="w-full border border-black/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange/40 focus:border-orange" placeholder="jane@company.com"/>
+        </div>
+      </div>
+      <div>
+        <label class="text-sm font-medium text-charcoal block mb-1.5">Project Location</label>
+        <input name="project_location" type="text" class="w-full border border-black/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange/40 focus:border-orange" placeholder="Site address or area"/>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm font-medium text-charcoal block mb-1.5">Service Required</label>
+          <select name="service_required" class="w-full border border-black/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange/40 focus:border-orange">
+            <option>Asphalt Surfacing</option>
+            <option>Asphalt Resurfacing</option>
+            <option>Commercial Asphalt</option>
+            <option>Industrial Asphalt</option>
+            <option>Paving</option>
+            <option>Road Construction</option>
+            <option>Civil Works</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-sm font-medium text-charcoal block mb-1.5">Estimated Project Size</label>
+          <input name="project_size" type="text" class="w-full border border-black/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange/40 focus:border-orange" placeholder="e.g. 500 m&sup2;"/>
+        </div>
+      </div>
+      <div>
+        <label class="text-sm font-medium text-charcoal block mb-1.5">Project Description</label>
+        <textarea name="message" rows="4" class="w-full border border-black/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange/40 focus:border-orange" placeholder="Tell us more about your project"></textarea>
+      </div>
+      <div>
+        <label class="text-sm font-medium text-charcoal block mb-1.5">Upload Project Images <span class="text-muted font-normal">(optional)</span></label>
+        <input name="attachments" type="file" multiple class="w-full text-sm text-muted file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-orange/10 file:text-orange file:font-medium"/>
+      </div>
+      <div id="quote-status" class="hidden text-sm rounded-lg px-4 py-3"></div>
+      <button type="submit" id="quote-submit-btn" class="btn-orange w-full justify-center !py-3 mt-2">Submit Quote Request</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // mobile menu
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+  // fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // quote modal
+  function openQuote() {
+    const m = document.getElementById('quote-modal');
+    m.classList.remove('hidden');
+    requestAnimationFrame(() => m.classList.remove('opacity-0'));
+    document.body.style.overflow = 'hidden';
+  }
+  function closeQuote() {
+    const m = document.getElementById('quote-modal');
+    m.classList.add('opacity-0');
+    document.body.style.overflow = '';
+    setTimeout(() => m.classList.add('hidden'), 250);
+  }
+  // ---- FORM SUBMISSION CONFIG ----
+  // Sign up free at https://formspree.io, create a form, and paste its endpoint below.
+  // Example: 'https://formspree.io/f/abcdwxyz'
+  const QUOTE_FORM_ENDPOINT = 'https://formspree.io/f/YOUR_QUOTE_FORM_ID';
+
+  async function submitQuote(e) {
+    e.preventDefault();
+    const form = document.getElementById('quote-form');
+    const status = document.getElementById('quote-status');
+    const btn = document.getElementById('quote-submit-btn');
+
+    if (QUOTE_FORM_ENDPOINT.includes('YOUR_QUOTE_FORM_ID')) {
+      status.className = 'text-sm rounded-lg px-4 py-3 bg-amber-50 text-amber-800 border border-amber-200';
+      status.textContent = 'Form not connected yet — set QUOTE_FORM_ENDPOINT in the code to your Formspree endpoint.';
+      status.classList.remove('hidden');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    status.classList.add('hidden');
+
+    try {
+      const res = await fetch(QUOTE_FORM_ENDPOINT, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        status.className = 'text-sm rounded-lg px-4 py-3 bg-green-50 text-green-700 border border-green-200';
+        status.textContent = "Thank you — your quote request has been received. Our team will be in touch shortly.";
+        status.classList.remove('hidden');
+        form.reset();
+        setTimeout(closeQuote, 2200);
+      } else {
+        throw new Error('Request failed');
+      }
+    } catch (err) {
+      status.className = 'text-sm rounded-lg px-4 py-3 bg-red-50 text-red-700 border border-red-200';
+      status.textContent = "Something went wrong sending your request. Please call or WhatsApp us directly.";
+      status.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Submit Quote Request';
+    }
+  }
+
+  // testimonial slider
+  let tIndex = 0;
+  const slides = document.querySelectorAll('.testimonial-slide');
+  function changeTestimonial(dir) {
+    slides[tIndex].classList.add('hidden');
+    tIndex = (tIndex + dir + slides.length) % slides.length;
+    slides[tIndex].classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
